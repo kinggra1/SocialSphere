@@ -49,8 +49,7 @@ public class SocialSphere : MonoBehaviour {
 
 			}
 		}
-        
-		TwitterAPI.instance.SearchTwitter("cats", PopulateTweets);
+		SearchAndFill("cats");
 	}
 	
 	// Update is called once per frame
@@ -58,6 +57,9 @@ public class SocialSphere : MonoBehaviour {
 		
 	}
 
+	public void SearchAndFill(string query) {
+		TwitterAPI.instance.SearchTwitter(query, PopulateTweets);
+	}
 
 	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {
 		Debug.Log(newTweets.Count + " tweets pulled");

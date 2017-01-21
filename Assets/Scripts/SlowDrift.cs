@@ -12,7 +12,7 @@ public class SlowDrift : MonoBehaviour {
 	public float yMaxDist = 10f;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		initialPos = transform.localPosition;
 		xDriftSpeed = Random.value/5f * Mathf.Sign(Random.value-0.5f);
 		yDriftSpeed = Random.value/5f * Mathf.Sign(Random.value-0.5f);
