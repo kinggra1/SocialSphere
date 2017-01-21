@@ -23,6 +23,9 @@ public class TagPortal : Viewable {
 		if (viewTime > 2f) {
 			sphere.SearchAndFill(text.text);
 			box.ReturnToSphere();
+
+			viewTime = 0f;
+			beingViewed = false;
 		}
 	}
 
