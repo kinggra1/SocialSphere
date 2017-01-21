@@ -20,13 +20,20 @@ public class Viewable : MonoBehaviour {
 	}
 
 	public void LookedAt() {
-		StopCoroutine("Shrink");
-		StartCoroutine("Grow");
+		if (gameObject.activeInHierarchy) {
+			StopCoroutine("Shrink");
+			StartCoroutine("Grow");
+		}
 	}
 
 	public void LookedAway() {
-		StopCoroutine("Grow");
-		StartCoroutine("Shrink");
+		if (gameObject.activeInHierarchy) {
+			StopCoroutine("Grow");
+			StartCoroutine("Shrink");
+		} else {
+			transform.position = originalPos;
+			transform.localScale = Vector3.one;
+		}
 	}
 
 

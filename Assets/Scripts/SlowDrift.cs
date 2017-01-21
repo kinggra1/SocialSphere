@@ -20,7 +20,7 @@ public class SlowDrift : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position += new Vector3(xDriftSpeed, yDriftSpeed, 0f)*Time.deltaTime;
+		this.transform.position += new Vector3(xDriftSpeed, yDriftSpeed, 0f) * Time.deltaTime;
 
 		if (Mathf.Abs(transform.position.y - initialPos.y) > yMaxDist) {
 			yDriftSpeed = -yDriftSpeed;

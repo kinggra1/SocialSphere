@@ -40,7 +40,8 @@ public class PreviewBox : Viewable {
 		}
 
 		if (viewTime > 2f) {
-			Destroy(this.gameObject);
+			ShowSocialBox();
+			sphere.HideFam();
 		}
 	}
 
@@ -49,6 +50,19 @@ public class PreviewBox : Viewable {
 			SetTweet(sphere.NextTweet());
 			seen = false;
 		}
+	}
+
+	public void ShowSocialBox() {
+		GameObject box = Instantiate(
+			sphere.socialPrefab,
+			transform.position,
+			transform.rotation
+		);
+
+		box.transform.localScale = transform.localScale;
+
+		SocialBox socialBox = box.GetComponent<SocialBox>();
+		socialBox.SetTweet(tweet);
 	}
 
 	public void SetTweet(TweetSearchTwitterData newTweet) {
