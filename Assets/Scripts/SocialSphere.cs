@@ -7,7 +7,7 @@ public class SocialSphere : MonoBehaviour {
 	public GameObject previewPrefab;
 
 	private List<PreviewBox> previewBoxes = new List<PreviewBox>();
-	private List<string> tweets;
+	private List<TweetSearchTwitterData> tweets;
 	private int tweetIndex = 0;
 
 	// Use this for initialization
@@ -37,11 +37,15 @@ public class SocialSphere : MonoBehaviour {
 					Quaternion.LookRotation(previewPos - Camera.main.transform.position)
 				) as GameObject;
 
-				previewBoxes.Add(preview.GetComponent<PreviewBox>());
+				PreviewBox pBox = preview.GetComponent<PreviewBox>();
+				pBox.SetSphere(this);
+				previewBoxes.Add(pBox);
 
 
 			}
 		}
+
+		TwitterAPI.instance.SearchTwitter("word", PopulateTweets);
 	}
 	
 	// Update is called once per frame
@@ -50,7 +54,19 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 
-	public void PopulateTweets(List<string> tweets) {
-		
+	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {
+		Debug.Log(newTweets.Count + " tweets pulled");
+		tweets = newTweets;
+
+		foreach (PreviewBox box in previewBoxes) {
+			box.SetTweet(NextTweet());
+		}
+	}
+
+	public TweetSearchTwitterData NextTweet() {
+		TweetSearchTwitterData result = tweets[tweetIndex];
+		tweetIndex++;
+		tweetIndex%=tweets.Count;
+		return result;
 	}
 }

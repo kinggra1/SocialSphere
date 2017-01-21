@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TagPortal : Viewable {
 
-	Vector3 originalPos;
-
 	// Use this for initialization
 	void Start () {
 		originalPos = transform.position;
