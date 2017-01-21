@@ -16,7 +16,7 @@ public class PreviewBox : Viewable {
 
 	// Use this for initialization
 	void Start () {
-		originalPos = transform.position;
+		originalPos = transform.localPosition;
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		SocialCam cam = player.GetComponent<SocialCam>();
 
@@ -65,6 +65,7 @@ public class PreviewBox : Viewable {
 		box.transform.localScale = transform.localScale;
 
 		SocialBox socialBox = box.GetComponent<SocialBox>();
+		socialBox.SetSphere(sphere);
 		socialBox.SetTweet(tweet);
 	}
 

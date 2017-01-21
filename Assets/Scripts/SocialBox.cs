@@ -10,6 +10,9 @@ public class SocialBox : MonoBehaviour {
 	private TweetSearchTwitterData tweet;
 	private Text text;
 
+	private GameObject centerEye;
+	private SocialSphere sphere;
+
 	// Use this for initialization
 	void Awake () {
 		text = GetComponentInChildren<Text>();
@@ -18,6 +21,15 @@ public class SocialBox : MonoBehaviour {
 
 	void Start() {
 		StartCoroutine("PresentSelf");
+
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		SocialCam cam = player.GetComponent<SocialCam>();
+
+		if (cam != null) {
+			centerEye = cam.centerEye;
+		} else {
+			Debug.LogError("PREVIEW BOX COULD NOT FIND SOCIAL CAM");
+		}
 		//List<string> tags = new List<string>();
 		//tags.Add("#tag1");
 		//tags.Add("#tag2");
@@ -34,26 +46,38 @@ public class SocialBox : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		float angle = Vector3.Angle(transform.position - centerEye.transform.position, centerEye.transform.forward);
+		if (angle > 80f) {
+			ReturnToSphere();
+		}
 	}
 
 	public void AddTags(List<string> tags) {
 		for (int i = 0; i < tags.Count; i++) {
 			float rad = Mathf.PI/2 + (i*2*Mathf.PI)/tags.Count;
 
+			float xOffset = Mathf.Cos(rad)*16;
+			float yOffset = Mathf.Sin(rad)*8;
+
 			GameObject tag = Instantiate(tagPrefab, 
-				tagParent.transform.position, 
+				tagParent.transform.position + transform.right*xOffset + transform.up*yOffset, 
 				tagParent.transform.rotation,
 				tagParent.transform) as GameObject;
 
 			TextMesh text = tag.GetComponent<TextMesh>();
+			TagPortal tagPortal = tag.GetComponent<TagPortal>();
+			tagPortal.SetSphere(sphere);
+			tagPortal.SetBox(this);
+
+			tag.transform.rotation = Quaternion.LookRotation(tag.transform.position - Camera.main.transform.position);
 			text.text = tags[i];
-
-			float xOffset = Mathf.Cos(rad)*16;
-			float yOffset = Mathf.Sin(rad)*8;
-
-			tag.transform.position += transform.right*xOffset + transform.up*yOffset;
+			tag.AddComponent<BoxCollider>();
 		}
+	}
+
+	public void ReturnToSphere() {
+		sphere.ShowFam();
+		StartCoroutine("SayByeBye");
 	}
 
 	public void SetTweet(TweetSearchTwitterData newTweet) {
@@ -75,6 +99,10 @@ public class SocialBox : MonoBehaviour {
 		AddTags(tags);
 	}
 
+	public void SetSphere(SocialSphere parent) {
+		sphere = parent;
+	}
+
 	IEnumerator PresentSelf() {
 		float duration = 1.0f;
 		float timer = 0f;
@@ -90,6 +118,24 @@ public class SocialBox : MonoBehaviour {
 
 			yield return null;
 		}
+	}
+
+	IEnumerator SayByeBye() {
+		float duration = 1.0f;
+		float timer = 0f;
+		float travelDistance = 20f;
+
+		Vector3 initialPos = transform.position;
+
+		while (timer < duration) {
+			timer += Time.deltaTime;
+			transform.position = Vector3.Lerp(
+				initialPos, initialPos + transform.forward*travelDistance, timer/duration
+			);
+
+			yield return null;
+		}
+		Destroy(gameObject);
 	}
 
     string StripWord(string word)

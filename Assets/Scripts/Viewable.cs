@@ -59,12 +59,12 @@ public class Viewable : MonoBehaviour {
 		float duration = 0.5f;
 
 		float lastScale = transform.localScale.x;
-		Vector3 lastPos = transform.position;
+		Vector3 lastPos = transform.localPosition;
 
 		while (timer < duration) {
 			timer += Time.deltaTime;
 			transform.localScale = Vector3.one * (lastScale + (1.4f-lastScale)*(timer/duration));
-			transform.position = Vector3.Lerp(lastPos, originalPos + -transform.forward*3f, timer/duration);
+			transform.localPosition = Vector3.Lerp(lastPos, originalPos + -transform.forward*3f, timer/duration);
 			yield return null;
 		}
 	}
@@ -76,12 +76,12 @@ public class Viewable : MonoBehaviour {
 		float duration = 0.5f;
 
 		float lastScale = transform.localScale.x;
-		Vector3 lastPos = transform.position;
+		Vector3 lastPos = transform.localPosition;
 
 		while (timer < duration) {
 			timer += Time.deltaTime;
 			transform.localScale = Vector3.one * (lastScale - (lastScale-1f)*(timer/duration));
-			transform.position = Vector3.Lerp(lastPos, originalPos, timer/duration);
+			transform.localPosition = Vector3.Lerp(lastPos, originalPos, timer/duration);
 			yield return null;
 		}
 	}
