@@ -67,7 +67,7 @@ public class SocialBox : MonoBehaviour {
 		List<string> tags = new List<string>();
 		foreach (string word in text.text.Split(' ')) {
             string stripWord = StripWord(word);
-			if (!SocialSphere.StopWord(stripWord) && !word.StartsWith("http")) {
+			if (!SocialSphere.StopWord(stripWord) && !stripWord.StartsWith("http")) {
 				tags.Add(stripWord);
 			}
 		}
@@ -94,7 +94,7 @@ public class SocialBox : MonoBehaviour {
 
     string StripWord(string word)
     {
-        char[] RemoveChars = { '!', ',', '"', '.', '?'};
+        char[] RemoveChars = { '!', ',', '"', '.', '?', '\'', '(', ')'};
 
         word = word.Trim(RemoveChars);
 

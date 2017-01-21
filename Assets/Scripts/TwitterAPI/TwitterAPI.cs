@@ -50,8 +50,8 @@ public class TwitterAPI : MonoBehaviour
         SortedDictionary<string, string> twitterParamsDictionary = new SortedDictionary<string, string>
         {
             {"q", keywords},
-            {"rpp", "50"},
-            {"result_type", "popular"},
+            {"count", "100"},
+            //{"result_type", "popular"},
         };
 
         WWW query = CreateTwitterAPIQuery(twitterUrl, twitterParamsDictionary);
