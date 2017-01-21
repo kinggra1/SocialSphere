@@ -49,7 +49,6 @@ public class SocialSphere : MonoBehaviour {
 
 			}
 		}
-
 		SearchAndFill("cats");
 	}
 	
