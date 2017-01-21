@@ -66,8 +66,9 @@ public class SocialBox : MonoBehaviour {
 
 		List<string> tags = new List<string>();
 		foreach (string word in text.text.Split(' ')) {
-			if (!SocialSphere.StopWord(word)) {
-				tags.Add(word);
+            string stripWord = StripWord(word);
+			if (!SocialSphere.StopWord(stripWord) && !word.StartsWith("http")) {
+				tags.Add(stripWord);
 			}
 		}
 
@@ -90,4 +91,13 @@ public class SocialBox : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+    string StripWord(string word)
+    {
+        char[] RemoveChars = { '!', ',', '"', '.', '?'};
+
+        word = word.Trim(RemoveChars);
+
+        return word;
+    }
 }
