@@ -14,7 +14,7 @@ public class TwitterAPI : MonoBehaviour
     public string oauthConsumerKey = "Lse4eFDT3dZFaqBLVpNrgNgOL";
     public string oauthConsumerSecret = "MgKnKXyFPRgAWYP0KSBi5yTHrj5Clj0Y3KwvQUfNM3WgcD0fVj";
     public string oauthToken = "182666296-gmNO8fpKYPyQ9PwvIk7kubZCheJZ9u3VPgvZXvMS";
-    public string oauthTokenSecret = "	E3f9IyG00Dg6WDezppI0a0Y6hjhuEVHnnI9M6zZbKoaRQ";
+    public string oauthTokenSecret = "E3f9IyG00Dg6WDezppI0a0Y6hjhuEVHnnI9M6zZbKoaRQ";
 
     private string oauthNonce = "";
     private string oauthTimeStamp = "";

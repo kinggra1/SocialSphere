@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PreviewBox : Viewable {
 
+	private SocialSphere sphere;
 	private GameObject centerEye;
 	private bool seen = false;
 
@@ -45,7 +46,7 @@ public class PreviewBox : Viewable {
 
 	public void Refresh() {
 		if (text != null) {
-			text.text = "THIS HAS BEEN SEEN";
+			SetTweet(sphere.NextTweet());
 			seen = false;
 		}
 	}
@@ -53,5 +54,9 @@ public class PreviewBox : Viewable {
 	public void SetTweet(TweetSearchTwitterData newTweet) {
 		tweet = newTweet;
 		text.text = tweet.tweetText;
+	}
+
+	public void SetSphere(SocialSphere parent) {
+		sphere = parent;
 	}
 }

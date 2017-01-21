@@ -37,13 +37,15 @@ public class SocialSphere : MonoBehaviour {
 					Quaternion.LookRotation(previewPos - Camera.main.transform.position)
 				) as GameObject;
 
-				previewBoxes.Add(preview.GetComponent<PreviewBox>());
+				PreviewBox pBox = preview.GetComponent<PreviewBox>();
+				pBox.SetSphere(this);
+				previewBoxes.Add(pBox);
 
 
 			}
 		}
 
-		TwitterAPI.instance.SearchTwitter("#winning", PopulateTweets);
+		TwitterAPI.instance.SearchTwitter("word", PopulateTweets);
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,7 @@ public class SocialSphere : MonoBehaviour {
 
 
 	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {
+		Debug.Log(newTweets.Count + " tweets pulled");
 		tweets = newTweets;
 
 		foreach (PreviewBox box in previewBoxes) {
