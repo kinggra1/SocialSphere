@@ -6,6 +6,10 @@ public class SocialSphere : MonoBehaviour {
 
 	public GameObject previewPrefab;
 
+	private List<PreviewBox> previewBoxes = new List<PreviewBox>();
+	private List<string> tweets;
+	private int tweetIndex = 0;
+
 	// Use this for initialization
 	void Start () {
 
@@ -33,6 +37,8 @@ public class SocialSphere : MonoBehaviour {
 					Quaternion.LookRotation(previewPos - Camera.main.transform.position)
 				) as GameObject;
 
+				previewBoxes.Add(preview.GetComponent<PreviewBox>());
+
 
 			}
 		}
@@ -40,6 +46,11 @@ public class SocialSphere : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+
+	public void PopulateTweets(List<string> tweets) {
 		
 	}
 }
