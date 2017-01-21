@@ -8,25 +8,25 @@ public class SlowDrift : MonoBehaviour {
 	private float xDriftSpeed;
 	private float yDriftSpeed;
 
-	public float xMaxDist = 1f;
-	public float yMaxDist = 1f;
+	public float xMaxDist = 10f;
+	public float yMaxDist = 10f;
 
 	// Use this for initialization
-	void Start () {
-		initialPos = transform.position;
+	void Awake () {
+		initialPos = transform.localPosition;
 		xDriftSpeed = Random.value/5f * Mathf.Sign(Random.value-0.5f);
 		yDriftSpeed = Random.value/5f * Mathf.Sign(Random.value-0.5f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position += new Vector3(xDriftSpeed, yDriftSpeed, 0f) * Time.deltaTime;
+		this.transform.localPosition += new Vector3(xDriftSpeed, yDriftSpeed, 0f) * Time.deltaTime;
 
-		if (Mathf.Abs(transform.position.y - initialPos.y) > yMaxDist) {
+		if (Mathf.Abs(transform.localPosition.y - initialPos.y) > yMaxDist) {
 			yDriftSpeed = -yDriftSpeed;
 		}
 
-		if (Mathf.Abs(transform.position.x - initialPos.x) > xMaxDist) {
+		if (Mathf.Abs(transform.localPosition.x - initialPos.x) > xMaxDist) {
 			xDriftSpeed = -xDriftSpeed;
 		}
 	}

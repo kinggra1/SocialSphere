@@ -53,6 +53,9 @@ public class PreviewBox : Viewable {
 	}
 
 	public void ShowSocialBox() {
+		beingViewed = false;
+		viewTime = 0f;
+
 		GameObject box = Instantiate(
 			sphere.socialPrefab,
 			transform.position,

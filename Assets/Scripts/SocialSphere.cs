@@ -50,7 +50,7 @@ public class SocialSphere : MonoBehaviour {
 			}
 		}
 
-		TwitterAPI.instance.SearchTwitter("word", PopulateTweets);
+		TwitterAPI.instance.SearchTwitter("cats", PopulateTweets);
 	}
 	
 	// Update is called once per frame
@@ -88,13 +88,15 @@ public class SocialSphere : MonoBehaviour {
 
 	public void HideFam() {
 		foreach (PreviewBox box in previewBoxes) {
-			box.gameObject.SetActive(false);
+			box.Disappear();
+			//box.gameObject.SetActive(false);
 		}
 	}
 
 	public void ShowFam() {
 		foreach (PreviewBox box in previewBoxes) {
-			box.gameObject.SetActive(true);
+			box.Reappear();
+			//box.gameObject.SetActive(true);
 		}
 	}
 }
