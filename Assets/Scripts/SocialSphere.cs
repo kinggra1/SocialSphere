@@ -50,7 +50,7 @@ public class SocialSphere : MonoBehaviour {
 			}
 		}
 
-		TwitterAPI.instance.SearchTwitter("word", PopulateTweets);
+		TwitterAPI.instance.SearchTwitter("president", PopulateTweets);
 	}
 	
 	// Update is called once per frame
