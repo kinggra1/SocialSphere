@@ -76,7 +76,7 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 	static public bool StopWord(string word) {
-		if(stopWords.Contains(word))
+		if(stopWords.Contains(word.ToLower()))
         {
             return true;
         }
