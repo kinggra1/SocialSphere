@@ -49,10 +49,10 @@ public class SocialBox : MonoBehaviour {
 			TextMesh text = tag.GetComponent<TextMesh>();
 			text.text = tags[i];
 
-			float xPos = Mathf.Cos(rad)*8;
-			float yPos = Mathf.Sin(rad)*4;
+			float xOffset = Mathf.Cos(rad)*16;
+			float yOffset = Mathf.Sin(rad)*8;
 
-			tag.transform.position += new Vector3(xPos, yPos, 0f);
+			tag.transform.position += transform.right*xOffset + transform.up*yOffset;
 		}
 	}
 
