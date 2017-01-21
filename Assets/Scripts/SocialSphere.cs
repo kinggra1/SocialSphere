@@ -5,10 +5,14 @@ using UnityEngine;
 public class SocialSphere : MonoBehaviour {
 
 	public GameObject previewPrefab;
+	public GameObject socialPrefab;
 
 	private List<PreviewBox> previewBoxes = new List<PreviewBox>();
 	private List<TweetSearchTwitterData> tweets;
 	private int tweetIndex = 0;
+
+	private static string[] stopWords = {"John", "Paul", "Mary"};
+
 
 	// Use this for initialization
 	void Start () {
@@ -68,5 +72,21 @@ public class SocialSphere : MonoBehaviour {
 		tweetIndex++;
 		tweetIndex%=tweets.Count;
 		return result;
+	}
+
+	public bool StopWord(string word) {
+		
+	}
+
+	public void HideFam() {
+		foreach (PreviewBox box in previewBoxes) {
+			box.gameObject.SetActive(false);
+		}
+	}
+
+	public void ShowFam() {
+		foreach (PreviewBox box in previewBoxes) {
+			box.gameObject.SetActive(true);
+		}
 	}
 }
