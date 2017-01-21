@@ -34,6 +34,27 @@ public class TwitterAPI : MonoBehaviour
         }
     }
 
+    public void GetTopTrends(Action<List<TweetTopTrendsData>> callback)
+    {
+        PrepareOAuthData();
+        StartCoroutine(TopTrends_Coroutine(callback));
+    }
+
+    private IEnumerator TopTrends_Coroutine(Action<List<TweetTopTrendsData>> callback)
+    {
+        string twitterUrl = "https://api.twitter.com/1.1/trends/place.json";
+
+        SortedDictionary<string, string> twitterParamsDictionary = new SortedDictionary<string, string>
+        {
+            {"id", "WOEID"},
+        };
+
+        WWW query = CreateTwitterAPIQuery(twitterUrl, twitterParamsDictionary);
+        yield return query;
+
+        callback(ParseResultsFromTopTrends(query.text));
+    }
+
     public void SearchTwitter(string keywords, Action<List<TweetSearchTwitterData>> callback)
     {
         PrepareOAuthData();
@@ -58,6 +79,27 @@ public class TwitterAPI : MonoBehaviour
         yield return query;
 
         callback(ParseResultsFromSearchTwitter(query.text));
+    }
+
+    private List<TweetTopTrendsData> ParseResultsFromTopTrends(string jsonResults)
+    {
+        Debug.Log(jsonResults);
+
+        List<TweetTopTrendsData> trendDataList = new List<TweetTopTrendsData>();
+        object jsonObject = Json.Deserialize(jsonResults);
+        IDictionary search = (IDictionary)jsonObject;
+        IList trends = (IList)search["trends"];
+        foreach (IDictionary trend in trends)
+        {
+            IDictionary trendInfo = trend["name"] as IDictionary;
+
+            TweetTopTrendsData trendData = new TweetTopTrendsData();
+            trendData.name = trend["name"] as string;
+
+            trendDataList.Add(trendData);
+        }
+
+        return trendDataList;
     }
 
     // Use of MINI JSON http://forum.unity3d.com/threads/35484-MiniJSON-script-for-parsing-JSON-data
