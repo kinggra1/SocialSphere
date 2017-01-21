@@ -7,7 +7,7 @@ public class SocialSphere : MonoBehaviour {
 	public GameObject previewPrefab;
 
 	private List<PreviewBox> previewBoxes = new List<PreviewBox>();
-	private List<string> tweets;
+	private List<TweetSearchTwitterData> tweets;
 	private int tweetIndex = 0;
 
 	// Use this for initialization
@@ -42,6 +42,8 @@ public class SocialSphere : MonoBehaviour {
 
 			}
 		}
+
+		TwitterAPI.instance.SearchTwitter("#winning", PopulateTweets);
 	}
 	
 	// Update is called once per frame
@@ -50,7 +52,18 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 
-	public void PopulateTweets(List<string> tweets) {
-		
+	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {
+		tweets = newTweets;
+
+		foreach (PreviewBox box in previewBoxes) {
+			box.SetTweet(NextTweet());
+		}
+	}
+
+	public TweetSearchTwitterData NextTweet() {
+		TweetSearchTwitterData result = tweets[tweetIndex];
+		tweetIndex++;
+		tweetIndex%=tweets.Count;
+		return result;
 	}
 }

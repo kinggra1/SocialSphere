@@ -9,6 +9,8 @@ public class PreviewBox : Viewable {
 	private GameObject centerEye;
 	private bool seen = false;
 
+	private TweetSearchTwitterData tweet = null;
+
 	private Text text;
 
 	// Use this for initialization
@@ -46,5 +48,10 @@ public class PreviewBox : Viewable {
 			text.text = "THIS HAS BEEN SEEN";
 			seen = false;
 		}
+	}
+
+	public void SetTweet(TweetSearchTwitterData newTweet) {
+		tweet = newTweet;
+		text.text = tweet.tweetText;
 	}
 }
