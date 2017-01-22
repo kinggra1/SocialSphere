@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 public class SocialBox : MonoBehaviour {
 
@@ -95,10 +96,12 @@ public class SocialBox : MonoBehaviour {
 
 		List<string> tags = new List<string>();
 		foreach (string word in text.text.Split(' ')) {
+            List<string> usedWords = new List<string>();
             string stripWord = StripWord(word);
 			if (!SocialSphere.StopWord(stripWord) && !stripWord.StartsWith("http")) {
 				tags.Add(stripWord);
 			}
+            tags = tags.Distinct().ToList();
 		}
 
 		AddTags(tags);
@@ -173,7 +176,7 @@ public class SocialBox : MonoBehaviour {
 
     string StripWord(string word)
     {
-        char[] RemoveChars = { '!', ',', '"', '.', '?', '\'', '(', ')', '*'};
+        char[] RemoveChars = { '!', ',', '"', '.', '?', '\'', '(', ')', '*', ':', ';'};
 
         word = word.Trim(RemoveChars);
 
