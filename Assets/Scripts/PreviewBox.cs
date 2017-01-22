@@ -39,7 +39,7 @@ public class PreviewBox : Viewable {
 			Refresh();
 		}
 
-		if (viewTime > 3f) {
+		if (viewTime > 4f) {
 			ShowSocialBox();
 			sphere.HideFam();
 		}

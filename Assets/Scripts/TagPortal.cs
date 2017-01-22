@@ -20,7 +20,7 @@ public class TagPortal : Viewable {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
-		if (viewTime > 2.5f) {
+		if (viewTime > 2f) {
 			Debug.Log("Searching for keyword: " + text.text);
 			sphere.SearchAndFill(text.text);
 			box.ReturnToSphere();
