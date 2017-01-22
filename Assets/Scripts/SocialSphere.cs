@@ -10,7 +10,7 @@ public class SocialSphere : MonoBehaviour {
     public GameObject tagPrefab;
 
     private List<PreviewBox> previewBoxes = new List<PreviewBox>();
-    private List<TweetSearchTwitterData> tweets;
+	private List<TweetSearchTwitterData> tweets = new List<TweetSearchTwitterData>();
     private List<TweetTopTrendsData> trends;
     private int tweetIndex = 0;
 
@@ -80,10 +80,9 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 	public TweetSearchTwitterData NextTweet() {
-
-		TweetSearchTwitterData result = tweets[tweetIndex];
 		tweetIndex++;
 		tweetIndex%=tweets.Count;
+		TweetSearchTwitterData result = tweets[tweetIndex];
 		return result;
 	}
 
