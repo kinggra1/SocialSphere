@@ -95,7 +95,7 @@ public class SocialBox : MonoBehaviour {
 		text.text = tweet.tweetText;
 
 		List<string> tags = new List<string>();
-		foreach (string word in text.text.Split(' ')) {
+		foreach (string word in text.text.Split(' ', '\n')) {
             List<string> usedWords = new List<string>();
             string stripWord = StripWord(word);
 			if (!SocialSphere.StopWord(stripWord) && !stripWord.StartsWith("http")) {
