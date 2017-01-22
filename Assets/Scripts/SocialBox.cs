@@ -9,17 +9,19 @@ public class SocialBox : MonoBehaviour {
 	public GameObject tagParent;
 	public GameObject tagPrefab;
 
+	public Text name;
 	public Image profileImage;
+	public Text location;
+	public Text URL;
+	public Text text;
 
 	private TweetSearchTwitterData tweet;
-	private Text text;
 
 	private GameObject centerEye;
 	private SocialSphere sphere;
 
 	// Use this for initialization
 	void Awake () {
-		text = GetComponentInChildren<Text>();
 
 	}
 
@@ -92,6 +94,12 @@ public class SocialBox : MonoBehaviour {
 
 		tweet = newTweet;
 		Debug.Log(newTweet.profileImageUrl);
+
+
+		name.text = tweet.name;
+		location.text = tweet.location;
+		URL.text = tweet.screenName;
+
 		text.text = tweet.tweetText;
 
 		List<string> tags = new List<string>();
