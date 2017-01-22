@@ -46,7 +46,7 @@ public class TwitterAPI : MonoBehaviour
 
         SortedDictionary<string, string> twitterParamsDictionary = new SortedDictionary<string, string>
         {
-            {"id", "WOEID"},
+            {"id", "1"},
         };
 
         WWW query = CreateTwitterAPIQuery(twitterUrl, twitterParamsDictionary);

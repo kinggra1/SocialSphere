@@ -173,7 +173,7 @@ public class SocialBox : MonoBehaviour {
 
     string StripWord(string word)
     {
-        char[] RemoveChars = { '!', ',', '"', '.', '?', '\'', '(', ')'};
+        char[] RemoveChars = { '!', ',', '"', '.', '?', '\'', '(', ')', '*'};
 
         word = word.Trim(RemoveChars);
 
