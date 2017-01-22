@@ -35,7 +35,7 @@ public class SocialCam : MonoBehaviour {
         // END OF DUMB MOTION WITHOUT OCULUS STUFF
 
 
-        cursor.transform.position = centerEye.transform.forward * (cursor.transform.position - centerEye.transform.position).magnitude;
+        cursor.transform.position = centerEye.transform.position + centerEye.transform.forward * (cursor.transform.position - centerEye.transform.position).magnitude;
 		Debug.DrawRay(centerEye.transform.position, centerEye.transform.forward*100f, Color.red);
 
 		RaycastHit hitInfo;
