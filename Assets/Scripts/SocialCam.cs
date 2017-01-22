@@ -36,10 +36,10 @@ public class SocialCam : MonoBehaviour {
 
 		RaycastHit hitInfo;
 		if (Physics.Raycast(centerEye.transform.position, centerEye.transform.forward, out hitInfo)) {
-			Viewable viewable = hitInfo.collider.gameObject.GetComponentInParent<Viewable>();
+			Viewable viewable = hitInfo.collider.gameObject.GetComponent<Viewable>();
 			if (viewable == null) {
 				// check in self if not in parent (for tags)
-				viewable = hitInfo.collider.gameObject.GetComponent<Viewable>();
+				viewable = hitInfo.collider.gameObject.GetComponentInParent<Viewable>();
 			}
 
 			if (viewable != null) {

@@ -10,7 +10,7 @@ public class Viewable : MonoBehaviour {
 	protected float viewTime = 0f;
 
 	void Start() {
-
+		
 	}
 
 	public void Update() {
@@ -50,7 +50,6 @@ public class Viewable : MonoBehaviour {
 		StartCoroutine("Flee");
 	}
 
-
 	IEnumerator Grow() {
 		viewTime = 0f;
 		beingViewed = true;
@@ -70,6 +69,7 @@ public class Viewable : MonoBehaviour {
 	}
 
 	IEnumerator Shrink() {
+		viewTime = 0f;
 		beingViewed = false;
 
 		float timer = 0f;
@@ -87,6 +87,9 @@ public class Viewable : MonoBehaviour {
 	}
 
 	IEnumerator Flee() {
+		viewTime = 0f;
+		beingViewed = false;
+
 		float timer = 0f;
 		float duration = 0.5f;
 

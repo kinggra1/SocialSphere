@@ -59,6 +59,7 @@ public class SocialSphere : MonoBehaviour {
 
 	public void SearchAndFill(string query) {
 		TwitterAPI.instance.SearchTwitter(query, PopulateTweets);
+		tweetIndex = 0;
 	}
 
 	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {

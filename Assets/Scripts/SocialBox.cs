@@ -7,6 +7,9 @@ public class SocialBox : MonoBehaviour {
 
 	public GameObject tagParent;
 	public GameObject tagPrefab;
+
+	public Image profileImage;
+
 	private TweetSearchTwitterData tweet;
 	private Text text;
 
@@ -71,7 +74,8 @@ public class SocialBox : MonoBehaviour {
 
 			tag.transform.rotation = Quaternion.LookRotation(tag.transform.position - Camera.main.transform.position);
 			text.text = tags[i];
-			tag.AddComponent<BoxCollider>();
+
+			StartCoroutine(DelayedColliderAdd(tag));
 		}
 	}
 
@@ -86,6 +90,7 @@ public class SocialBox : MonoBehaviour {
 		}
 
 		tweet = newTweet;
+		Debug.Log(newTweet.profileImageUrl);
 		text.text = tweet.tweetText;
 
 		List<string> tags = new List<string>();
@@ -97,10 +102,21 @@ public class SocialBox : MonoBehaviour {
 		}
 
 		AddTags(tags);
+
+		string url = tweet.profileImageUrl;
+		Debug.Log(url);
+		url = url.Replace("_normal","");
+		Debug.Log(url);
+		StartCoroutine(LoadPicture(url));
 	}
 
 	public void SetSphere(SocialSphere parent) {
 		sphere = parent;
+	}
+
+	IEnumerator DelayedColliderAdd(GameObject tag) {
+		yield return new WaitForSeconds(1.2f);
+		tag.AddComponent<BoxCollider>();
 	}
 
 	IEnumerator PresentSelf() {
@@ -136,6 +152,23 @@ public class SocialBox : MonoBehaviour {
 			yield return null;
 		}
 		Destroy(gameObject);
+	}
+
+	IEnumerator LoadPicture(string url) {
+
+		// Start a download of the given URL
+		WWW www = new WWW(url);
+
+		// Wait for download to complete
+		yield return www;
+
+		// assign texture
+		//Renderer renderer = GetComponent<Renderer>();
+		Sprite s = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height),
+			Vector2.zero);
+
+		profileImage.sprite = s;
+		
 	}
 
     string StripWord(string word)
