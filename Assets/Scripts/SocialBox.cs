@@ -96,10 +96,9 @@ public class SocialBox : MonoBehaviour {
 		Debug.Log(newTweet.profileImageUrl);
 
 
-		name.text = tweet.screenName;
-		//location.text = tweet.location;
-		//URL.text = tweet.
-
+		name.text = tweet.name;
+		location.text = tweet.location;
+		URL.text = tweet.screenName;
 
 		text.text = tweet.tweetText;
 
