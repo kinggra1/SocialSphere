@@ -77,6 +77,7 @@ public class TwitterAPI : MonoBehaviour
         };
 
         WWW query = CreateTwitterAPIQuery(twitterUrl, twitterParamsDictionary);
+		yield return new WaitForSeconds(1f);
         yield return query;
 
         callback(ParseResultsFromSearchTwitter(query.text));

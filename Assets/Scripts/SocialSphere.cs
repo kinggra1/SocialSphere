@@ -33,9 +33,9 @@ public class SocialSphere : MonoBehaviour {
 			for (int i = 0; i < iMax; i++) {
 				float phi = (i*2*Mathf.PI)/iMax;
 
-				float xPos = Mathf.Sin(theta) * Mathf.Cos(phi) * distance;
-				float yPos = Mathf.Cos(theta) * distance;
-				float zPos = Mathf.Sin(theta) * Mathf.Sin(phi) * distance;
+				float xPos = Mathf.Sin(theta) * Mathf.Cos(phi) * distance + Random.value-0.5f;
+				float yPos = Mathf.Cos(theta) * distance + Random.value-0.5f;
+				float zPos = Mathf.Sin(theta) * Mathf.Sin(phi) * distance + Random.value-0.5f;
 
 				Vector3 previewPos = new Vector3(xPos, yPos, zPos);
 				GameObject preview = Instantiate(
@@ -80,10 +80,15 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 	public TweetSearchTwitterData NextTweet() {
+
 		TweetSearchTwitterData result = tweets[tweetIndex];
 		tweetIndex++;
 		tweetIndex%=tweets.Count;
 		return result;
+	}
+
+	public bool HasTweets() {
+		return tweets.Count != 0;
 	}
 
 	static public bool StopWord(string word) {

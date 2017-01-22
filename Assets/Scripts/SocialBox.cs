@@ -138,7 +138,7 @@ public class SocialBox : MonoBehaviour {
 	IEnumerator PresentSelf() {
 		float duration = 1.0f;
 		float timer = 0f;
-		float travelDistance = -10f;
+		float travelDistance = -7f;
 
 		Vector3 initialPos = transform.position;
 
@@ -150,6 +150,7 @@ public class SocialBox : MonoBehaviour {
 
 			yield return null;
 		}
+		transform.position = initialPos + transform.forward*travelDistance;
 	}
 
 	IEnumerator SayByeBye() {
