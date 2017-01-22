@@ -46,7 +46,7 @@ public class TwitterAPI : MonoBehaviour
 
         SortedDictionary<string, string> twitterParamsDictionary = new SortedDictionary<string, string>
         {
-            {"id", "1"},
+            {"id", "23424977"},
         };
 
         WWW query = CreateTwitterAPIQuery(twitterUrl, twitterParamsDictionary);
@@ -89,14 +89,13 @@ public class TwitterAPI : MonoBehaviour
 
         List<TweetTopTrendsData> trendDataList = new List<TweetTopTrendsData>();
         object jsonObject = Json.Deserialize(jsonResults);
-        IDictionary search = (IDictionary)jsonObject;
-        IList trends = (IList)search["trends"];
-        foreach (IDictionary trend in trends)
+        IList search = (IList)jsonObject;
+        foreach (IDictionary trend in search)
         {
             IDictionary trendInfo = trend["name"] as IDictionary;
 
             TweetTopTrendsData trendData = new TweetTopTrendsData();
-            trendData.name = trend["name"] as string;
+            trendData.name = trendInfo["name"] as string;
 
             trendDataList.Add(trendData);
         }
