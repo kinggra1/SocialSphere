@@ -72,9 +72,23 @@ public class PreviewBox : Viewable {
 	public void SetTweet(TweetSearchTwitterData newTweet) {
 		tweet = newTweet;
 		text.text = tweet.tweetText;
+		StartCoroutine(Bob());
 	}
 
 	public void SetSphere(SocialSphere parent) {
 		sphere = parent;
+	}
+
+	IEnumerator Bob() {
+		float timer = 0f;
+		float duration = 0.8f;
+
+		Vector3 lastPos = transform.position;
+
+		while (timer < duration) {
+			timer += Time.deltaTime;
+			transform.position = lastPos + -transform.up * Mathf.Sin(Mathf.PI*(timer/duration));
+			yield return null;
+		}
 	}
 }
