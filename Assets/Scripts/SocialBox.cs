@@ -93,9 +93,9 @@ public class SocialBox : MonoBehaviour {
 		}
 
 		tweet = newTweet;
-		Debug.Log(newTweet.profileImageUrl);
 
-
+		Debug.Log(tweet.name);
+		Debug.Log(tweet.location);
 		name.text = tweet.name;
 		location.text = tweet.location;
 		URL.text = tweet.screenName;
@@ -117,7 +117,6 @@ public class SocialBox : MonoBehaviour {
 		string url = tweet.profileImageUrl;
 		Debug.Log(url);
 		url = url.Replace("_normal","");
-		Debug.Log(url);
 		StartCoroutine(LoadPicture(url));
 	}
 
