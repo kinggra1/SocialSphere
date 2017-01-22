@@ -72,6 +72,7 @@ public class TwitterAPI : MonoBehaviour
         {
             {"q", keywords},
             {"count", "100"},
+            {"lang", "en"}
             //{"result_type", "popular"},
         };
 
@@ -117,9 +118,10 @@ public class TwitterAPI : MonoBehaviour
 
             TweetSearchTwitterData twitterData = new TweetSearchTwitterData();
             twitterData.tweetText = tweet["text"] as string;
+            twitterData.name = tweet["name"] as string;
             twitterData.screenName = userInfo["screen_name"] as string;
-            twitterData.retweetCount = (Int64)tweet["retweet_count"];
             twitterData.profileImageUrl = userInfo["profile_image_url"] as string;
+            twitterData.location = userInfo["location"] as string;
 
             twitterDataList.Add(twitterData);
         }
