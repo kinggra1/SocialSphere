@@ -89,9 +89,9 @@ public class TwitterAPI : MonoBehaviour
 
         List<TweetTopTrendsData> trendDataList = new List<TweetTopTrendsData>();
         object jsonObject = Json.Deserialize(jsonResults);
-        IDictionary search = (IDictionary)jsonObject;
-        IList trends = (IList)search["trends"];
-        foreach (IDictionary trend in trends)
+        IDictionary[] trends = (IDictionary[])jsonObject;
+        
+		foreach (IDictionary trend in trends)
         {
             IDictionary trendInfo = trend["name"] as IDictionary;
 
