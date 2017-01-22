@@ -51,7 +51,7 @@ public class SocialSphere : MonoBehaviour {
 
 			}
 		}
-        TwitterAPI.instance.GetTopTrends(PopulateTrends);
+        //TwitterAPI.instance.GetTopTrends(PopulateTrends);
 		SearchAndFill("cats");
 	}
 	
@@ -66,32 +66,18 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 	public void PopulateTweets(List<TweetSearchTwitterData> newTweets) {
+		StartCoroutine(AsyncPopulateTweets(newTweets));
+	}
+
+	IEnumerator AsyncPopulateTweets(List<TweetSearchTwitterData> newTweets) {
 		Debug.Log(newTweets.Count + " tweets pulled");
 		tweets = newTweets;
 
 		foreach (PreviewBox box in previewBoxes) {
 			box.SetTweet(NextTweet());
+			yield return null;
 		}
 	}
-
-    public void PopulateTrends(List<TweetTopTrendsData> newTrends)
-    {
-        Debug.Log(newTrends.Count + " trends pulled");
-
-        List<string> tags = new List<string>();
-        
-        foreach (TweetTopTrendsData trend in newTrends)
-        {
-            tags.Add(trend.name);
-        }
-
-        DisplayTrends(tags);
-    }
-
-    public void DisplayTrends(List<string> tags)
-    {
-       
-    }
 
 	public TweetSearchTwitterData NextTweet() {
 		TweetSearchTwitterData result = tweets[tweetIndex];
