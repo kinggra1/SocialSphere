@@ -51,13 +51,11 @@ public class SocialSphere : MonoBehaviour {
 
 			}
 		}
-        //TwitterAPI.instance.GetTopTrends(PopulateTrends);
-		SearchAndFill("cats");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	public void SearchAndFill(string query) {
@@ -75,6 +73,14 @@ public class SocialSphere : MonoBehaviour {
 
 		foreach (PreviewBox box in previewBoxes) {
 			box.SetTweet(NextTweet());
+			yield return null;
+		}
+	}
+
+	public IEnumerator Apperate() {
+		foreach (PreviewBox box in previewBoxes) {
+			box.transform.localScale = Vector3.one*0.01f;
+			box.LookedAway();
 			yield return null;
 		}
 	}

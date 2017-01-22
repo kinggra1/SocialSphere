@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SocialCam : MonoBehaviour {
 
 	public GameObject centerEye;
+	public GameObject cursor;
 
 	private Viewable pViewable = null;
 
@@ -17,7 +19,9 @@ public class SocialCam : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			SceneManager.LoadScene("TestScene");
+		}
 
 		// UNTIL WE GOT SOME HARDWARE THAT CAN RUN OCULUS, DO DIS SHIT
 		float hInput = Input.GetAxis("Mouse X");
@@ -36,6 +40,8 @@ public class SocialCam : MonoBehaviour {
 
 		RaycastHit hitInfo;
 		if (Physics.Raycast(centerEye.transform.position, centerEye.transform.forward, out hitInfo)) {
+			cursor.transform.position = hitInfo.point;
+			cursor.transform.localScale = (hitInfo.distance * new Vector3 (0.02f, 0.02f, 0.02f));
 			Viewable viewable = hitInfo.collider.gameObject.GetComponent<Viewable>();
 			if (viewable == null) {
 				// check in self if not in parent (for tags)

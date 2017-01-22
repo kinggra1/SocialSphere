@@ -95,10 +95,8 @@ public class TwitterAPI : MonoBehaviour
 
 		foreach (IDictionary trend in trends)
         {
-            IDictionary trendInfo = trend["name"] as IDictionary;
-
             TweetTopTrendsData trendData = new TweetTopTrendsData();
-            trendData.name = trendInfo["name"] as string;
+            trendData.name = trend["name"] as string;
 
             trendDataList.Add(trendData);
         }
