@@ -20,16 +20,16 @@ public class SocialSphere : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		float minPhi = 50f*Mathf.PI/180;
-		float maxPhi = 130f*Mathf.PI/180;
+		float minPhi = 60f*Mathf.PI/180;
+		float maxPhi = 120f*Mathf.PI/180;
 
 
-		float distance = 20f;
+		float distance = 25f;
 
 		for (int r = 0; r < 5; r++) {
 			float theta = minPhi + r*(maxPhi-minPhi)/4;
 
-			int iMax = 10-Mathf.Abs(r-2)*2;
+			int iMax = 10-Mathf.Abs(r-2)*1;
 			for (int i = 0; i < iMax; i++) {
 				float phi = (i*2*Mathf.PI)/iMax;
 
