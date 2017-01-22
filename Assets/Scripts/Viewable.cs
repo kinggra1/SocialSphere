@@ -66,6 +66,8 @@ public class Viewable : MonoBehaviour {
 			transform.localPosition = Vector3.Lerp(lastPos, originalPos + -transform.forward*3f, timer/duration);
 			yield return null;
 		}
+		transform.localScale = Vector3.one * 1.4f;
+		transform.localPosition = originalPos + -transform.forward*3f;
 	}
 
 	IEnumerator Shrink() {
@@ -84,6 +86,8 @@ public class Viewable : MonoBehaviour {
 			transform.localPosition = Vector3.Lerp(lastPos, originalPos, timer/duration);
 			yield return null;
 		}
+		transform.localScale = Vector3.one;
+		transform.localPosition = originalPos;
 	}
 
 	IEnumerator Flee() {

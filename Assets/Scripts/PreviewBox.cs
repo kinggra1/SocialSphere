@@ -47,8 +47,10 @@ public class PreviewBox : Viewable {
 
 	public void Refresh() {
 		if (text != null) {
-			SetTweet(sphere.NextTweet());
-			seen = false;
+			if (sphere.HasTweets()) {
+				SetTweet(sphere.NextTweet());
+				seen = false;
+			}
 		}
 	}
 
@@ -90,5 +92,6 @@ public class PreviewBox : Viewable {
 			transform.position = lastPos + -transform.up * Mathf.Sin(Mathf.PI*(timer/duration));
 			yield return null;
 		}
+		transform.position = lastPos;
 	}
 }

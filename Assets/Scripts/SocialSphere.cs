@@ -80,10 +80,15 @@ public class SocialSphere : MonoBehaviour {
 	}
 
 	public TweetSearchTwitterData NextTweet() {
+
 		TweetSearchTwitterData result = tweets[tweetIndex];
 		tweetIndex++;
 		tweetIndex%=tweets.Count;
 		return result;
+	}
+
+	public bool HasTweets() {
+		return tweets.Count != 0;
 	}
 
 	static public bool StopWord(string word) {
