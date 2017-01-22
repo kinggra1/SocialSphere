@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TagPortal : Viewable {
+public class URLPortal : Viewable {
 
 	public SocialSphere sphere;
 	public SocialBox box;
@@ -16,13 +16,13 @@ public class TagPortal : Viewable {
 		transform.localPosition = Vector3.zero;
 		LookedAway();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		base.Update();
 		if (viewTime > 2f) {
 			Debug.Log("Searching for keyword: " + text.text);
-			sphere.SearchAndFill(text.text);
+			sphere.SearchAndFill("from:"+text.text.Substring(1));
 			box.ReturnToSphere();
 
 			viewTime = 0f;

@@ -118,7 +118,7 @@ public class TwitterAPI : MonoBehaviour
 
             TweetSearchTwitterData twitterData = new TweetSearchTwitterData();
             twitterData.tweetText = tweet["text"] as string;
-            twitterData.name = tweet["screen_name"] as string;
+            twitterData.name = userInfo["name"] as string;
             twitterData.screenName = userInfo["screen_name"] as string;
             twitterData.profileImageUrl = userInfo["profile_image_url"] as string;
             twitterData.location = userInfo["location"] as string;

@@ -12,7 +12,7 @@ public class SocialBox : MonoBehaviour {
 	public Text name;
 	public Image profileImage;
 	public Text location;
-	public Text URL;
+	public TextMesh screenName;
 	public Text text;
 
 	private TweetSearchTwitterData tweet;
@@ -94,11 +94,17 @@ public class SocialBox : MonoBehaviour {
 
 		tweet = newTweet;
 
-		Debug.Log(tweet.name);
+		Debug.Log("Screen name: " + tweet.name);
 		Debug.Log(tweet.location);
 		name.text = tweet.name;
 		location.text = tweet.location;
-		URL.text = tweet.screenName;
+
+
+		screenName.text = '@'+tweet.screenName;
+		URLPortal namePortal = screenName.GetComponent<URLPortal>();
+		namePortal.SetSphere(sphere);
+		namePortal.SetBox(this);
+		StartCoroutine(DelayedColliderAdd(namePortal.gameObject));
 
 		text.text = tweet.tweetText;
 
