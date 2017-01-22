@@ -32,16 +32,16 @@ public class SocialCam : MonoBehaviour {
 		if (vInput != 0f) {
 			transform.Rotate(-vInput, 0f, 0f, Space.Self);
 		}
-		// END OF DUMB MOTION WITHOUT OCULUS STUFF
+        // END OF DUMB MOTION WITHOUT OCULUS STUFF
 
 
-
+        cursor.transform.position = centerEye.transform.forward * (cursor.transform.position - centerEye.transform.position).magnitude;
 		Debug.DrawRay(centerEye.transform.position, centerEye.transform.forward*100f, Color.red);
 
 		RaycastHit hitInfo;
 		if (Physics.Raycast(centerEye.transform.position, centerEye.transform.forward, out hitInfo)) {
 			cursor.transform.position = hitInfo.point;
-			cursor.transform.localScale = (hitInfo.distance * new Vector3 (0.02f, 0.02f, 0.02f));
+			cursor.transform.localScale = (hitInfo.distance * new Vector3 (0.01f, 0.01f, 0.01f));
 			Viewable viewable = hitInfo.collider.gameObject.GetComponent<Viewable>();
 			if (viewable == null) {
 				// check in self if not in parent (for tags)

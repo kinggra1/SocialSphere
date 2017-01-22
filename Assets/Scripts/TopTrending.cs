@@ -20,7 +20,7 @@ public class TopTrending : MonoBehaviour {
 	}
 
 	public void PopulateTrending(List<TweetTopTrendsData> trends) {
-		float distance = 25;
+		float distance = 50;
 
 		float minRot = 45f*Mathf.PI/180;
 		float maxRot = 135f*Mathf.PI/180;
